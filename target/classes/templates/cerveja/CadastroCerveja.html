@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org/">
+<head>
+<meta charset="UTF-8">
+<title>Cadastro Cervejas</title>
+</head>
+<body>
+
+	<h1>Olá! Thymeleaf configurado!</h1>
+
+		<div th:each="erro : ${#fields.detailedErrors('${cerveja.*}')}">
+			<span th:text="${erro.message}"></span>
+		</div>
+
+	<form method="POST" th:object="${cerveja}"> <!-- Informa qual objeto será usado no formulário -->
+		<span th:text="${mensagem}"></span> <!-- Informa a mensagem de Sucesso ou Erro -->
+		<br />
+		
+		<!-- o th:field serve para referenciar o objeto Cerveja ao seu atributo informado no pacote do Model -->
+		<label for="sku">SKU</label>
+		<input type="text" id="sku" th:field="*{sku}"/>
+		<br />
+		
+		<label for="nome">Nome</label>
+		<input type="text" id="nome" th:field="*{nome}"/>
+		<br />
+		
+		<label for="descricao">Descrição</label>
+		<textarea rows="3" cols="30" id="descricao" th:field="*{descricao}"></textarea>
+		<br />
+		
+		<input type="submit" value="Salvar"/>
+	</form>
+	
+</body>
+</html>
