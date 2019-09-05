@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:th="http://www.thymeleaf.org"
+	  layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+	<title>Cadastro de Clientes</title>
+</head>
+
+<!-- Início da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
+<section layout:fragment="conteudo">
+
+	<!-- Início Título Cadastro Cliente -->
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				<strong>Cadastro de Cliente</strong>
+			</h1>
+		</div>
+	</div>
+	<!-- Fim Título Cadastro Cliente -->
+
+	<div class="container-fluid">
+		<!-- Início Formulário Cadastro Clientes -->
+		<form>
+			<div class="row">
+				<!-- Início Campo Nome -->
+				<div class="form-group  col-sm-12">
+					<label for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus"/>
+				</div>
+				<!-- Fim Campo Nome -->
+			</div>
+			
+			<div class="row">
+				<!-- Início Campo Tipo Pessoa -->
+				<div class="form-group  col-sm-4">
+					<label>Tipo Pessoa</label> 
+					<div>
+						<div class="radio  radio-inline">
+							<input type="radio" name="tipoPessoa"> 
+							<label>Física</label>
+						</div>
+						<div class="radio  radio-inline">
+							<input type="radio" name="tipoPessoa"> 
+							<label>Jurídica</label>
+						</div>
+					</div>
+				</div>
+				<!-- Fim Campo Tipo Pessoa -->
+				
+				<!-- Início Campo CPF/CNPJ -->
+				<div class="form-group  col-sm-8" >
+					<label for="cpfOuCnpj">CPF/CNPJ</label>
+					<input type="text" class="form-control" id="cpfOuCnpj"/>
+				</div>
+				<!-- Fim Campo CPF/CNPJ -->
+			</div>
+			
+			<div class="row">
+				<!-- Início Campo Telefone -->
+				<div class="form-group  col-sm-4">
+					<label for="telefone">Telefone</label>
+					<input type="text" class="form-control" id="telefone"/>
+				</div>
+				<!-- Fim Campo Telefone -->
+				
+				<!-- Início Campo E-mail -->
+				<div class="form-group  col-sm-8">
+					<label for="email">E-mail</label>
+					<input type="text" class="form-control" id="email"/>
+				</div>
+				<!-- Fim Campo E-mail -->
+			</div>
+			
+			<div class="row">
+				<!-- Início Campo Logradouro -->
+				<div class="form-group  col-sm-4">
+					<label for="logradouro">Logradouro</label>
+					<input type="text" class="form-control" id="logradouro"/>
+				</div>
+				<!-- Fim Campo Logradouro -->
+				
+				<!-- Início Campo Número -->
+				<div class="form-group  col-sm-4">
+					<label for="numero">Número</label>
+					<input type="text" class="form-control" id="numero"/>
+				</div>
+				<!-- Fim Campo Número -->
+				
+				<!-- Início Campo Complemento -->
+				<div class="form-group  col-sm-4">
+					<label for="complemento">Complemento</label>
+					<input type="text" class="form-control" id="complemento"/>
+				</div>
+				<!-- Fim Campo Complemento -->
+			</div>
+			
+			<div class="row">
+				<!-- Início Campo CEP -->
+				<div class="form-group  col-sm-4">
+					<label for="cep">CEP</label>
+					<input type="text" class="form-control" id="cep"/>
+				</div>
+				<!-- Fim Campo CEP -->
+				
+				<!-- Início Campo Estado -->
+				<div class="form-group  col-sm-4">
+					<label for="estado">Estado</label>
+					<select id="estado" class="form-control">
+	                    <option value="">Selecione o estado</option>
+	                </select>
+				</div>
+				<!-- Fim Campo Estado -->
+				
+				<!-- Início Campo Cidade -->
+				<div class="form-group  col-sm-4">
+					<label  for="cidade">Cidade</label>
+					<select id="cidade" class="form-control">
+						<option value="">Selecione a cidade</option>
+					</select>
+				</div>
+				<!-- Fim Campo Cidade -->
+			</div>
+			
+			<!-- Início Botão Salvar -->
+			<button type="submit" class="btn  btn-primary">Salvar</button>	
+			<!-- Fim Botão Salvar -->			
+		</form>
+		<!-- Fim Formulário Cadastro Clientes -->
+	</div>
+</section>
+<!-- Fim da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
+
+</html>

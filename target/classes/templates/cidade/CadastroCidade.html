@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+	<title>Cadastro de Cidades</title>
+</head>
+
+<!-- Início da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
+<section layout:fragment="conteudo">
+
+	<!-- Início Título Cadastro Cidade -->
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				<strong>Cadastro de Cidade</strong>
+			</h1>
+		</div>
+	</div>
+	<!-- Fim Título Cadastro Cidade -->
+	
+	<div class="container-fluid">
+		<!-- Início Formulário Cadastro Cidades -->
+		<form>
+			<div class="row">
+				<!-- Início Campo Estado -->
+				<div class="form-group  col-sm-4" >
+					<label for="estado" >Estado</label>
+					<select id="estado" class="form-control">
+	                    <option value="">Selecione o estado</option>
+	                </select>
+				</div>
+				<!-- Fim Campo Estado -->
+				
+				<!-- Início Campo Nome -->
+				<div class="form-group  col-sm-8">
+					<label for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus"/>
+				</div>
+				<!-- Fim Campo Nome -->
+			</div>
+			<!-- Início Botão Salvar -->
+			<button type="submit" class="btn  btn-primary">Salvar</button>
+			<!-- Fim Botão Salvar -->
+		</form>
+		<!-- Fim Formulário Cadastro Cidades -->
+	</div>
+</section>
+<!-- Fim da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
+
+</html>

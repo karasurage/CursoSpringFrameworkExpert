@@ -4,7 +4,9 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorator="'layout/LayoutPadrao'">
 	
-<head></head>
+<head>
+	<title>Cadastro de Cervejas</title>
+</head>
 
 <body>
 
@@ -15,7 +17,7 @@
 	<div class="page-header">
 		<div class="container-fluid">
 			<h1>
-				Cadastro de cerveja
+				<strong>Cadastro de Cerveja</strong>
 			</h1>
 		</div>
 	</div>
@@ -58,9 +60,21 @@
 				<!-- Início Campo Estilo -->
 				<div class="col-sm-3  form-group">
 					<label for="estilo">Estilo</label>
-					<select id="estilo" class="form-control">
-						<option value="">Selecione o estilo</option>
-					</select>
+					<div class="bw-field-action">
+						<select id="estilo" class="form-control">
+							<option value="">Selecione o estilo</option>
+						</select>
+						
+						<!-- Início Botão de Adicionar Estilo Rápido-->
+						<div class="bw-field-action__icon">
+							<!-- Início do modal para o Botão Adicionar Estilo Rápido -->
+							<a href="#" data-toggle="modal" data-target="#modalCadastroRapidoEstilo">
+								<i class="glyphicon  glyphicon-plus-sign  bw-glyphicon-large"></i>
+							</a>
+							<!-- Fim do modal para o Botão Adicionar Estilo Rápido -->
+						</div>
+						<!-- Fim Botão de Adicionar Estilo Rápido-->
+					</div>
 				</div>
 				<!-- Fim Campo Estilo -->
 				
@@ -138,6 +152,10 @@
 		</form>
 		<!-- Fim Formulário Cadastro Cerveja -->
 	</div>
+	
+	<!-- Início do Modal modalCadastroRapidoEstilo -->
+	<div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
+	<!-- Fim do Modal modalCadastroRapidoEstilo -->
 	
 </section>
 <!-- Fim da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->

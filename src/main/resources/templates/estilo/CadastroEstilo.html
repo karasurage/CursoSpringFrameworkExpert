@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="'layout/LayoutPadrao'">
+
+<head>
+	<title>Cadastro de Estilos</title>
+</head>
+
+<!-- Início da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
+<section layout:fragment="conteudo">
+
+	<!-- Início Título Cadastro Estilo -->
+	<div class="page-header">
+		<div class="container-fluid">
+			<h1>
+				<strong>Cadastro de Estilo</strong>
+			</h1>
+		</div>
+	</div>
+	<!-- Fim Título Cadastro Estilo -->
+	
+	<div class="container-fluid">
+		<!-- Início Formulário Cadastro Estilos -->
+		<form>
+			<div class="row">
+				<!-- Início Campo Nome -->
+				<div class="form-group  col-sm-12">
+					<label for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus"/>
+				</div>
+				<!-- Fim Campo Nome -->
+			</div>
+			<!-- Início Botão Salvar -->	
+			<button type="submit" class="btn  btn-primary">Salvar</button>
+			<!-- Fim Botão Salvar -->
+		</form>
+		<!-- Fim Formulário Cadastro Estilos -->
+	</div>
+</section>
+<!-- Fim da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
+
+</html>
