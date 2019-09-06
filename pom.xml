@@ -1,62 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Informações sobre a versão do Spring utilizada -->
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.1.7.RELEASE</version>
-		<relativePath /> <!-- lookup parent from repository -->
+		<relativePath />
 	</parent>
-	<groupId>com.algaworks</groupId>
-	<artifactId>brewer</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<packaging>war</packaging>
-	<name>brewer</name>
-	<description>Curso Algaworks Spring Framework Expert</description>
 
-	<!-- Declarar as Versões das Dependências -->
+	<!-- Informações sobre o projeto -->
+	<groupId>com.springboot.cervejaria</groupId>
+	<artifactId>breja</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<!-- Arquivo para Deploy -->
+	<packaging>war</packaging>
+	<name>breja</name>
+	<description></description>
+
+
+	<!-- Propriedades do Spring -->
 	<properties>
-		<!-- Entrada e Saída de Dados em UTF-8 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<project.reporting.outputEnconding>UTF-8</project.reporting.outputEnconding>
 
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 
-		<!-- Versão Java -->
 		<java.version>1.8</java.version>
 
-		<!-- Versão Maven -->
-		<maven-compiler-plugin.version>3.6.1</maven-compiler-plugin.version>
-
-		<!-- Versão para Dependências Spring -->
-		<spring-framework.version>5.1.9.RELEASE</spring-framework.version>
-
-		<!-- Servlet API -->
-		<servlet.version>4.0.1</servlet.version>
-
-		<!-- Thymeleaf -->
-		<thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
-
-		<!-- Thymeleaf Spring4 -->
-		<thymeleaf.version>3.0.11.RELEASE</thymeleaf.version>
-
-		<!-- Versão H2 Database -->
-		<h2database.version>1.4.199</h2database.version>
-
-		<!-- Bean Validation / Hibernate Validator -->
-		<hibernate-validator.version>6.0.17.Final</hibernate-validator.version>
-		
-		<!-- Thymeleaf - Layout Dialect -->
-		<thymeleaf-layout-dialect.version>2.4.1</thymeleaf-layout-dialect.version>
-		
-		<!-- Logging -->
-		<log4j.version>2.6</log4j.version>
-		<jcl-over-slf4j.version>1.7.28</jcl-over-slf4j.version>
+		<maven-compiler-pluging.version>3.2</maven-compiler-pluging.version>
 	</properties>
-	
-	<!-- Informa as Versões das Dependências para o Spring (Não precisa declara	a Versão nas Dependências) -->
+
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -69,18 +47,19 @@
 		</dependencies>
 	</dependencyManagement>
 
-	<!-- Informar as Dependências do Projetos -->
+	<!-- Gerenciamento de dependências do Spring -->
 	<dependencies>
-		<!-- JPA -->
+		<!-- JPA Repository -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<scope>compile</scope>
 		</dependency>
 
-		<!-- JDBC -->
+		<!-- Spring Data JPA -->
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
 		</dependency>
 
 		<!-- Thymeleaf -->
@@ -90,25 +69,12 @@
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Thymeleaf Spring 4 -->
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf-spring4</artifactId>
-			<version>${thymeleaf.version}</version>
-			<scope>compile</scope>
-		</dependency>
-
 		<!-- Starter Web -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>compile</scope>
 		</dependency>
-
-		<!-- Flyway Migration DB -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.flywaydb</groupId> -->
-		<!-- <artifactId>flyway-core</artifactId> -->
-		<!-- </dependency> -->
 
 		<!-- Devtools -->
 		<dependency>
@@ -117,13 +83,6 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-
-		<!-- MySQL -->
-		<!-- <dependency> -->
-		<!-- <groupId>mysql</groupId> -->
-		<!-- <artifactId>mysql-connector-java</artifactId> -->
-		<!-- <scope>runtime</scope> -->
-		<!-- </dependency> -->
 
 		<!-- Tomcat -->
 		<dependency>
@@ -159,51 +118,89 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- H2 Database -->
+		<!-- Thymeleaf Spring -->
 		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<groupId>org.thymeleaf</groupId>
+			<artifactId>thymeleaf-spring4</artifactId>
+			<version>3.0.4.RELEASE</version>
 			<scope>compile</scope>
 		</dependency>
 
-		<!-- Bean Validation / Hibernate Validator -->
+		<!-- Bean Validation | Hibernate Validator -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>${hibernate-validator.version}</version>
+			<version>6.0.17.Final</version>
 			<scope>compile</scope>
+		</dependency>
+
+		<!-- Hibernate Core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Banco de Dados Mysql -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- JDBC -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 
 		<!-- Thymeleaf - Layout Dialect -->
 		<dependency>
 			<groupId>nz.net.ultraq.thymeleaf</groupId>
 			<artifactId>thymeleaf-layout-dialect</artifactId>
-<!-- 			<version>${thymeleaf-layout-dialect.version}</version> -->
 		</dependency>
-		
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-slf4j-impl</artifactId>
-<!-- 			<version>${log4j.version}</version> -->
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
-<!-- 			<version>${log4j.version}</version> -->
 		</dependency>
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
-<!-- 			<version>${log4j.version}</version> -->
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
-<!-- 			<version>${jcl-over-slf4j.version}</version> -->
+		</dependency>
+
+		<!-- JPA / Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Hibernate - Java 8 Support -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-java8</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Jackson - JSON -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<scope>compile</scope>
 		</dependency>
 	</dependencies>
 
+	<!-- Chamada do Template do Thymeleaf -->
 	<repositories>
 		<repository>
 			<id>sonatype-nexus-snapshots</id>
@@ -215,20 +212,29 @@
 		</repository>
 	</repositories>
 
+
+
+
+	<!-- Projeção de Build e Criação do Arquivo War na pasta Target -->
 	<build>
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
 			<plugin>
-				<!-- Modelo do Algaworks - Início -->
-				<!-- <artifactId>maven-compiler-plugin</artifactId> -->
-				<!-- <version>${maven-compiler-plugin.version}</version> -->
-				<!-- <configuration> -->
-				<!-- <source>${java.version}</source> -->
-				<!-- <target>${java.version}</target> -->
-				<!-- </configuration> -->
-				<!-- Modelo do Algaworks - Fim -->
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Plugin Flyway -->
+			<plugin>
+				<groupId>org.flywaydb</groupId>
+				<artifactId>flyway-maven-plugin</artifactId>
+				<configuration>
+					<driver>com.mysql.jdbc.Driver</driver>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

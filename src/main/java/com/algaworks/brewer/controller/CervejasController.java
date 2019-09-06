@@ -14,6 +14,9 @@ import com.algaworks.brewer.model.Cerveja;
 @Controller
 public class CervejasController {
 
+//	@Autowired
+//	private Cervejas cervejas;
+	
 	@RequestMapping("/cervejas/novo")
 	public String novo(Cerveja cerveja) {
 		return "cerveja/CadastroCerveja";
@@ -29,6 +32,8 @@ public class CervejasController {
 	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
 	public String cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) { 
 		if (result.hasErrors()) {
+//			cervejas.findAll(); // Apagar...
+			
 			return novo(cerveja);
 		}
 		

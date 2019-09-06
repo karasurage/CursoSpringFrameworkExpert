@@ -82,5 +82,4 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 		registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
 	}
 
-
 }
