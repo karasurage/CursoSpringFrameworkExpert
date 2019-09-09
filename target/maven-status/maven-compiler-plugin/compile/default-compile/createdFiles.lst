@@ -1,0 +1,15 @@
+com\algaworks\brewer\model\Sabor.class
+com\algaworks\brewer\BrewerApplication.class
+com\algaworks\brewer\config\init\AppInitializer.class
+com\algaworks\brewer\controller\CervejasController.class
+com\algaworks\brewer\repository\Cervejas.class
+com\algaworks\brewer\controller\CidadesController.class
+com\algaworks\brewer\controller\EstiloController.class
+com\algaworks\brewer\controller\ClientesController.class
+com\algaworks\brewer\model\Cerveja.class
+com\algaworks\brewer\controller\UsuariosController.class
+com\algaworks\brewer\config\WebConfig.class
+com\algaworks\brewer\config\JPAConfig.class
+com\algaworks\brewer\ServletInitializer.class
+com\algaworks\brewer\model\Estilo.class
+com\algaworks\brewer\model\Origem.class

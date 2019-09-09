@@ -37,14 +37,14 @@
 				<!-- Início Campo SKU -->
 				<div class="col-sm-2  form-group">
 					<label for="sku">SKU</label>
-					<input id="sku" type="text" class="form-control"/>
+					<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 				</div>
 				<!-- Fim Campo SKU -->
 				
 				<!-- Início Campo Nome -->
 				<div class="col-sm-10  form-group">
 					<label for="nome">Nome</label>
-					<input id="nome" type="text" class="form-control"/>
+					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 				</div>
 				<!-- Fim Campo Nome -->
 			</div>
@@ -52,7 +52,7 @@
 			<!-- Início Campo Descrição -->
 			<div class="form-group">
 				<label for="descricao">Descrição</label>
-				<textarea id="descricao" rows="3" class="form-control"></textarea>
+				<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
 			</div>
 			<!-- Fim Campo Descrição -->
 
@@ -63,6 +63,7 @@
 					<div class="bw-field-action">
 						<select id="estilo" class="form-control">
 							<option value="">Selecione o estilo</option>
+							<option th:each="estilo : ${estilos}" th:value="${estilo.codigo}" th:text="${estilo.nome}"></option>
 						</select>
 						
 						<!-- Início Botão de Adicionar Estilo Rápido-->
@@ -81,9 +82,9 @@
 				<!-- Início Campo Sabor -->
 				<div class="col-sm-3  form-group">
 					<label for="sabor">Sabor</label>
-					<select id="sabor" class="form-control">
+					<select id="sabor" class="form-control" th:field="*{sabor}">
 						<option value="">Selecione o sabor</option>
-						<option value="1">Adocicada</option>
+						<option th:each="sabor : ${sabores}" th:value="${sabor}" th:text="${sabor.descricao}" ></option>
 					</select>
 				</div>
 				<!-- Fim Campo Sabor -->
@@ -92,7 +93,7 @@
 				<div class="col-sm-3  form-group">
 					<label for="teorAlcoolico">Teor alcoólico</label>
 					<div class="input-group">
-						<input id="teorAlcoolico" type="text" class="form-control  js-decimal"/>
+						<input id="teorAlcoolico" type="text" class="form-control  js-decimal" th:field="*{teorAlcoolico}"/>
 						<div class="input-group-addon">%</div>
 					</div>
 				</div>
@@ -102,14 +103,13 @@
 				<div class="col-lg-3  col-sm-6  form-group">
 					<label for="origem">Origem</label>
 					<div>
-						<div class="radio  radio-inline">
-							<input type="radio" name="origem"> 
-							<label>Nacional</label>
-						</div>
-						<div class="radio  radio-inline">
-							<input type="radio" name="origem"> 
-							<label>Internacional</label>
-						</div>
+						<th:block th:each="origem : ${origens}">
+							<div class="radio  radio-inline">
+								<!-- th:id="|id_${origem}|" irá concatenar o id ao objeto origem -->
+								<input th:id="|id_${origem}|" type="radio" th:value="${origem}" th:field="*{origem}"> 
+								<label th:for="|id_${origem}|">Nacional</label>
+							</div>
+						</th:block>
 					</div>
 				</div>
 				<!-- Fim Campo Origem -->
@@ -118,10 +118,10 @@
 			<div class="row">
 				<!-- Início Campo Preço -->
 				<div class="col-sm-3  form-group">
-					<label for="preco">Preço</label>
+					<label for="valor">Valor</label>
 					<div class="input-group">
 						<div class="input-group-addon">R$</div>
-						<input id="preco" type="text" class="form-control  js-decimal"/>
+						<input id="valor" type="text" class="form-control  js-decimal" th:field="*{valor}"/>
 					</div>
 				</div>
 				<!-- Fim Campo Preço -->
@@ -130,7 +130,7 @@
 				<div class="col-sm-3  form-group">
 					<label for="comissao">Comissão</label>
 					<div class="input-group">
-						<input id="comissao" type="text" class="form-control  js-decimal"/>
+						<input id="comissao" type="text" class="form-control  js-decimal" th:field="*{comissao}"/>
 						<div class="input-group-addon">%</div>
 					</div>
 				</div>
@@ -139,7 +139,7 @@
 				<!-- Início Campo Estoque -->
 				<div class="col-sm-3  form-group">
 					<label for="estoque">Estoque</label>
-					<input id="estoque" type="text" class="form-control  js-plain"/>
+					<input id="estoque" type="text" class="form-control  js-plain" th:field="*{quantidadeEstoque}"/>
 				</div>
 				<!-- Fim Campo Estoque -->
 			</div>

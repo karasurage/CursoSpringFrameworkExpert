@@ -14,13 +14,13 @@
 	</parent>
 
 	<!-- Informações sobre o projeto -->
-	<groupId>com.springboot.cervejaria</groupId>
-	<artifactId>breja</artifactId>
+	<groupId>com.algaworks</groupId>
+	<artifactId>brewer</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<!-- Arquivo para Deploy -->
 	<packaging>war</packaging>
-	<name>breja</name>
-	<description></description>
+	<name>brewer</name>
+	<description>Curso Algaworks Spring Framework Expert</description>
 
 
 	<!-- Propriedades do Spring -->
@@ -211,9 +211,6 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
-
-
 
 	<!-- Projeção de Build e Criação do Arquivo War na pasta Target -->
 	<build>
