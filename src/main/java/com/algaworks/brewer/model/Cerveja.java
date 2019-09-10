@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
@@ -74,6 +76,16 @@ public class Cerveja {
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private Estilo estilo;
+	
+	/*
+	 * Antes de Persistir e os dados e Atualizar
+	 * Executar esse método (Callback do JPA)
+	 */
+	@PrePersist
+	@PreUpdate
+	public void prePersistUpdate() {
+		sku = sku.toUpperCase();
+	}
 
 	/*
 	 * Getters and Setters
