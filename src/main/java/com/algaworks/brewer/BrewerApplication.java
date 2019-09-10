@@ -30,6 +30,7 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import com.algaworks.brewer.controller.CervejasController;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
 import com.algaworks.brewer.service.CadastroCervejaService;
+import com.algaworks.brewer.thymeleaf.BrewerDialect;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -85,7 +86,9 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 		SpringTemplateEngine engine = new SpringTemplateEngine();
 		engine.setEnableSpringELCompiler(true);
 		engine.setTemplateResolver(templateResolver());
+		
 		engine.addDialect(new LayoutDialect()); // Cria um novo Layout Dialect
+		engine.addDialect(new BrewerDialect()); // Cria um novo Dialect Brewer
 		return engine;
 	}
 	
