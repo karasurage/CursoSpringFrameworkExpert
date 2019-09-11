@@ -8,6 +8,7 @@ import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.StandardDialect;
 
 import com.algaworks.brewer.thymeleaf.processor.ClassForErrorAttributeTagProcessor;
+import com.algaworks.brewer.thymeleaf.processor.MessageElementTagProcessor;
 
 public class BrewerDialect extends AbstractProcessorDialect {
 	
@@ -24,7 +25,11 @@ public class BrewerDialect extends AbstractProcessorDialect {
 	@Override
 	public Set<IProcessor> getProcessors(String dialectPrefix) {
 		final Set<IProcessor> processadores = new HashSet<>();
+		// Adiciona ao BrewerDialect a classe de Erro
 		processadores.add(new ClassForErrorAttributeTagProcessor(dialectPrefix));
+		
+		// Adiciona ao BrewerDialect a classe de Mensagens
+		processadores.add(new MessageElementTagProcessor(dialectPrefix));
 		return processadores;
 	}
 	

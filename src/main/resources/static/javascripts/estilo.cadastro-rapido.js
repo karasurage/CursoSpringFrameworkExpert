@@ -13,7 +13,7 @@ Brewer.EstiloCadastroRapido = (function() {
 	
 	EstiloCadastroRapido.prototype.iniciar = function() {
 		this.form.on('submit', function(event) { event.preventDefault() });
-		this.modal.on('shown.bs.modal', onModalShow.bind(this)); // Bind força a execução da função no contexto da inicialização da função
+		this.modal.on('shown.bs.modal', onModalShow.bind(this));
 		this.modal.on('hide.bs.modal', onModalClose.bind(this))
 		this.botaoSalvar.on('click', onBotaoSalvarClick.bind(this));
 	}
