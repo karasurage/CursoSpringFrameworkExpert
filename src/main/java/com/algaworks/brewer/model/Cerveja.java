@@ -67,7 +67,7 @@ public class Cerveja {
 	@NotNull(message = "A origem é obrigatória")
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
-	
+
 	@NotNull(message = "O sabor é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
@@ -76,10 +76,15 @@ public class Cerveja {
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private Estilo estilo;
-	
+
+	private String foto;
+
+	@Column(name = "content_type")
+	private String contentType;
+
 	/*
-	 * Antes de Persistir e os dados e Atualizar
-	 * Executar esse método (Callback do JPA)
+	 * Antes de Persistir e os dados e Atualizar Executar esse método (Callback do
+	 * JPA)
 	 */
 	@PrePersist
 	@PreUpdate
@@ -176,6 +181,22 @@ public class Cerveja {
 
 	public void setEstilo(Estilo estilo) {
 		this.estilo = estilo;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
 	}
 
 	/*

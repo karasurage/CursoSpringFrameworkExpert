@@ -30,6 +30,8 @@ import org.thymeleaf.templateresolver.ITemplateResolver;
 import com.algaworks.brewer.controller.CervejasController;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
 import com.algaworks.brewer.service.CadastroCervejaService;
+import com.algaworks.brewer.storage.FotoStorage;
+import com.algaworks.brewer.storage.local.FotoStorageLocal;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
@@ -137,6 +139,15 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 	 */
 	public LocaleResolver localeResolver() {
 		return new FixedLocaleResolver(new Locale("pt", "BR"));
+	}
+	
+	/*
+	 * Em produção pode ser modificado apenas o retorno do método da interface
+	 * --> "return new FotoStorageLocal()" para qualquer outro método implementado
+	 */
+	@Bean
+	public FotoStorage fotoStorage() {
+		return new FotoStorageLocal();
 	}
 
 }

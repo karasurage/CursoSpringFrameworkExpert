@@ -150,6 +150,10 @@
 			<!-- Início Botão de Upload de Arquivos (Imagens) -->
 			<div class="row">
 				<div class="form-group  col-sm-12">
+					<!-- Informações que serão adicionadas no Banco de Dados -->
+					<input type="hidden" th:field="*{foto}"/>
+					<input type="hidden" th:field="*{contentType}"/>
+				
 					<label class="control-label">Foto</label>
 					
 					<div id="upload-drop" class="bw-upload">
@@ -189,7 +193,11 @@
 				type: 'json',
 				filelimit: 1,
 				allow: '*.(jpg|jpeg|png)',
-				action: '/fotos'
+				action: '/fotos',
+				complete: function(resposta) {
+					$('input[name=foto]').val(resposta.nome);
+					$('input[name=contentType]').val(resposta.contentType);
+				}
 		};
 		
 		UIkit.uploadSelect($('#upload-select'), settings);
