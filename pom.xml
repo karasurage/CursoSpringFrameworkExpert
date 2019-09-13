@@ -27,6 +27,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEnconding>UTF-8</project.reporting.outputEnconding>
+		
+		<flyway-maven-plugin.version>4.0.2</flyway-maven-plugin.version>
 
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 
@@ -230,7 +232,7 @@
 				<groupId>org.flywaydb</groupId>
 				<artifactId>flyway-maven-plugin</artifactId>
 				<configuration>
-					<driver>com.mysql.jdbc.Driver</driver>
+					<driver>com.mysql.cj.jdbc.Driver</driver>
 				</configuration>
 			</plugin>
 		</plugins>
