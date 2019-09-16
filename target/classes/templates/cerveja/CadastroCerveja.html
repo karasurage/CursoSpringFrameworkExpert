@@ -19,9 +19,23 @@
 	<!-- Início Título Cadastro Cerveja -->
 	<div class="page-header">
 		<div class="container-fluid">
-			<h1>
-				<strong>Cadastro de Cerveja</strong>
-			</h1>
+			<div class="row">
+				<div class="col-sm-10">
+					<h1>
+						<strong>Cadastro de Cerveja</strong>
+					</h1>
+				</div>
+				
+					<!-- Início Botão Cadastrar Nova Cerveja -->
+					<div class="col-sm-2">
+						<div class="aw-page-header-controls">
+							<a class="btn  btn-default" th:href="@{/cervejas}">
+								<i class="glyphicon  glyphicon-plus-sign"></i><span class="hidden-xs  hidden-sm"> Pesquisa Cerveja</span>
+							</a>
+						</div>
+					</div>
+					<!-- Fim Botão Cadastrar Nova Cerveja -->
+				</div>
 		</div>
 	</div>
 
@@ -32,20 +46,20 @@
 		<form method="POST" th:object="${cerveja}" class="form-vertical  js-form-loading">
 		
 			<!-- Início Aviso de Mensagens de Sucesso e Erro -->
-			<th:block th:include="fragments/MensagemSucesso"></th:block>
-			<th:block th:include="fragments/MensagensErroValidacao"></th:block>
+			<th:block th:insert="fragments/MensagemSucesso"></th:block>
+			<th:block th:insert="fragments/MensagensErroValidacao"></th:block>
 			<!-- Fim Aviso de Mensagens de Sucesso e Erro -->
 		
 			<div class="row">
 				<!-- Início Campo SKU -->
-				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('sku')} ? has-error">
+				<div class="col-sm-2  form-group   bw-required" th:classappend="${#fields.hasErrors('sku')} ? has-error">
 					<label for="sku" class="control-label">SKU</label>
 					<input id="sku" type="text" class="form-control" th:field="*{sku}"/>
 				</div>
 				<!-- Fim Campo SKU -->
 				
 				<!-- Início Campo Nome -->
-				<div class="col-sm-10  form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+				<div class="col-sm-10  form-group  bw-required" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 					<label for="nome" class="control-label">Nome</label>
 					<input id="nome" type="text" class="form-control" th:field="*{nome}"/>
 				</div>
@@ -53,7 +67,7 @@
 			</div>
 
 			<!-- Início Campo Descrição -->
-			<div class="form-group" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
+			<div class="form-group  bw-required" th:classappend="${#fields.hasErrors('descricao')} ? has-error">
 				<label for="descricao" class="control-label">Descrição</label>
 				<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
 			</div>
@@ -61,7 +75,7 @@
 
 			<div class="row">
 				<!-- Início Campo Estilo -->
-				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('estilo')} ? has-error">
+				<div class="col-sm-3  form-group  bw-required" th:classappend="${#fields.hasErrors('estilo')} ? has-error">
 					<label for="estilo" class="control-label">Estilo</label>
 					<div class="bw-field-action">
 						<select id="estilo" class="form-control" th:field="*{estilo}">
@@ -83,7 +97,7 @@
 				<!-- Fim Campo Estilo -->
 				
 				<!-- Início Campo Sabor -->
-				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('sabor')} ? has-error">
+				<div class="col-sm-3  form-group  bw-required" th:classappend="${#fields.hasErrors('sabor')} ? has-error">
 					<label for="sabor" class="control-label">Sabor</label>
 					<select id="sabor" class="form-control" th:field="*{sabor}">
 						<option value="">Selecione o sabor</option>
@@ -93,7 +107,7 @@
 				<!-- Fim Campo Sabor -->
 				
 				<!-- Início Campo Teor Alcoólico -->
-				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('teorAlcoolico')} ? has-error">
+				<div class="col-sm-3  form-group  bw-required" th:classappend="${#fields.hasErrors('teorAlcoolico')} ? has-error">
 					<label for="teorAlcoolico" class="control-label">Teor alcoólico</label>
 					<div class="input-group">
 						<input id="teorAlcoolico" type="text" class="form-control  js-decimal" th:field="*{teorAlcoolico}"/>
@@ -103,7 +117,7 @@
 				<!-- Fim Campo Teor Alcoólico -->
 				
 				<!-- Início Campo Origem -->
-				<div class="col-lg-3  col-sm-6  form-group" th:classappend="${#fields.hasErrors('origem')} ? has-error">
+				<div class="col-lg-3  col-sm-6  form-group  bw-required" th:classappend="${#fields.hasErrors('origem')} ? has-error">
 					<label for="origem" class="control-label">Origem</label>
 					<div>
 						<th:block th:each="origem : ${origens}">
@@ -120,7 +134,7 @@
 			
 			<div class="row">
 				<!-- Início Campo Preço -->
-				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error">
+				<div class="col-sm-3  form-group  bw-required" th:classappend="${#fields.hasErrors('valor')} ? has-error">
 					<label for="valor" class="control-label">Valor</label>
 					<div class="input-group">
 						<div class="input-group-addon">R$</div>
@@ -130,7 +144,7 @@
 				<!-- Fim Campo Preço -->
 				
 				<!-- Início Campo Comissão -->
-				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('comissao')} ? has-error">
+				<div class="col-sm-3  form-group  bw-required" th:classappend="${#fields.hasErrors('comissao')} ? has-error">
 					<label for="comissao" class="control-label">Comissão</label>
 					<div class="input-group">
 						<input id="comissao" type="text" class="form-control  js-decimal" th:field="*{comissao}"/>
@@ -140,7 +154,7 @@
 				<!-- Fim Campo Comissão -->
 				
 				<!-- Início Campo Estoque -->
-				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('quantidadeEstoque')} ? has-error">
+				<div class="col-sm-3  form-group  bw-required" th:classappend="${#fields.hasErrors('quantidadeEstoque')} ? has-error">
 					<label for="estoque" class="control-label">Estoque</label>
 					<input id="estoque" type="text" class="form-control  js-plain" th:field="*{quantidadeEstoque}"/>
 				</div>
@@ -156,10 +170,12 @@
 				
 					<label class="control-label">Foto</label>
 					
-					<div id="upload-drop" class="bw-upload">
-						<i class="glyphicon  glyphicon-cloud-upload"></i>
-						<span>Arraste a foto aqui ou </span>
-						<a class="bw-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+					<div class="js-container-foto-cerveja" th:attr="data-url-fotos=@{/fotos}">
+						<div id="upload-drop" class="bw-upload">
+							<i class="glyphicon  glyphicon-cloud-upload"></i>
+							<span>Arraste a foto aqui ou </span>
+							<a class="bw-upload-form-file">selecione <input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -178,6 +194,10 @@
 	<div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
 	<!-- Fim do Modal modalCadastroRapidoEstilo -->
 	
+	<!-- Início do Handlebars -->
+	<th:block th:replace="hbs/FotoCerveja"></th:block>
+	<!-- Fim do Handlebars -->
+	
 </section>
 <!-- Fim da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
 	
@@ -186,26 +206,10 @@
 	<script th:src="@{/javascripts/estilo.cadastro-rapido.js}"></script>
 	<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
 	<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+	<script th:src="@{/javascripts/vendors/handlebars.min.js}"></script>
+	<script th:src="@{/javascripts/cerveja.upload-foto.js}"></script>
 	
-	<script>
-	$(function() {
-		var settings = {
-				type: 'json',
-				filelimit: 1,
-				allow: '*.(jpg|jpeg|png)',
-				action: '/fotos',
-				complete: function(resposta) {
-					$('input[name=foto]').val(resposta.nome);
-					$('input[name=contentType]').val(resposta.contentType);
-				}
-		};
-		
-		UIkit.uploadSelect($('#upload-select'), settings);
-		UIkit.uploadDrop($('#upload-drop'), settings);
-	});
-	</script>
-	
-</th:block>	
+</th:block>
 <!-- Fim Fragmento de CSS para o Modal de Cadastro de Estilo Rápido -->	
 	
 </body>
