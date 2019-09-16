@@ -1,4 +1,4 @@
-# Uso Database
+# Seleção Database
 use brewer;
 
 # Consulta das Tabelas
