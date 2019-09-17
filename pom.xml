@@ -35,6 +35,11 @@
 		<java.version>1.8</java.version>
 
 		<maven-compiler-pluging.version>3.2</maven-compiler-pluging.version>
+		
+		<!-- https://github.com/coobird/thumbnailator -->
+		<!-- thumbnailator - Gerar Thumbnail -->
+ 		<!-- https://github.com/coobird/thumbnailator -->
+		<thumbnailator.version>0.4.8</thumbnailator.version>
 	</properties>
 
 	<dependencyManagement>
@@ -200,6 +205,15 @@
 			<artifactId>jackson-databind</artifactId>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- thumbnailator - Gerar Thumbnail -->
+		<dependency>
+			<groupId>net.coobird</groupId>
+			<artifactId>thumbnailator</artifactId>
+			<version>${thumbnailator.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
 	</dependencies>
 
 	<!-- Chamada do Template do Thymeleaf -->
