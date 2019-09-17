@@ -11,6 +11,7 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.number.NumberStyleFormatter;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
@@ -44,6 +45,8 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @ComponentScan(basePackageClasses = { CervejasController.class, CadastroCervejaService.class })
 //Anotação de Configuração para Aplicações Web MVC
 @EnableWebMvc
+// Anotação para suporte do Data para Web (Paginação e mais)
+@EnableSpringDataWebSupport
 public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAware {
 
 	public static void main(String[] args) {
