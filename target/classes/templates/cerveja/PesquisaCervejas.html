@@ -21,7 +21,7 @@
 				<div class="col-sm-2">
 					<div class="aw-page-header-controls">
 						<a class="btn  btn-default" th:href="@{/cervejas/novo}">
-							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm"> Nova cerveja</span>
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm"> Nova Cerveja</span>
 						</a>
 					</div>
 				</div>
@@ -97,22 +97,10 @@
 					<tr>
 						<th class="table-cervejas-col-foto"></th>
 						<th class="table-cervejas-col-sku">
-							<a th:href="${pagina.urlOrdenada('sku')}" th:remove="${pagina.vazia} ? tag">
-								<span>SKU</span>
-								<span class="dropup" th:remove="${pagina.descendente('sku')} ? tag"
-										th:if="${pagina.ordenada('sku')}">
-									<span class="caret"></span>
-								</span>
-							</a>
+							<th:block th:replace="fragments/Ordenacao :: order (${pagina}, 'sku', 'SKU')"></th:block>
 						</th>
 						<th class="table-cervejas-col-nome">
-							<a th:href="${pagina.urlOrdenada('nome')}" th:remove="${pagina.vazia} ? tag">
-								<span>Nome</span>
-								<span class="dropup" th:remove="${pagina.descendente('nome')} ? tag"
-										th:if="${pagina.ordenada('nome')}">
-									<span class="caret"></span>
-								</span>
-							</a>
+							<th:block th:replace="fragments/Ordenacao :: order (${pagina}, 'nome', 'Nome')"></th:block>
 						</th>
 						<th class="table-cervejas-col-estilo">Estilo</th>
 						<th class="table-cervejas-col-origem">Origem</th>

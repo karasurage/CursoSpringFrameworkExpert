@@ -9,4 +9,5 @@ import com.algaworks.brewer.service.CadastroCervejaService;
 @ComponentScan(basePackageClasses = CadastroCervejaService.class)
 public class ServiceConfig {
 
+	
 }
