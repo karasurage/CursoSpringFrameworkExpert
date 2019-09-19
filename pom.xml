@@ -27,7 +27,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEnconding>UTF-8</project.reporting.outputEnconding>
-		
+
 		<flyway-maven-plugin.version>4.0.2</flyway-maven-plugin.version>
 
 		<failOnMissingWebXml>false</failOnMissingWebXml>
@@ -35,10 +35,10 @@
 		<java.version>1.8</java.version>
 
 		<maven-compiler-pluging.version>3.2</maven-compiler-pluging.version>
-		
+
 		<!-- https://github.com/coobird/thumbnailator -->
 		<!-- thumbnailator - Gerar Thumbnail -->
- 		<!-- https://github.com/coobird/thumbnailator -->
+		<!-- https://github.com/coobird/thumbnailator -->
 		<thumbnailator.version>0.4.8</thumbnailator.version>
 	</properties>
 
@@ -205,12 +205,19 @@
 			<artifactId>jackson-databind</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- thumbnailator - Gerar Thumbnail -->
 		<dependency>
 			<groupId>net.coobird</groupId>
 			<artifactId>thumbnailator</artifactId>
 			<version>${thumbnailator.version}</version>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- Thymeleaf Extras Data Attribute -->
+		<dependency>
+			<groupId>com.github.mxab.thymeleaf.extras</groupId>
+			<artifactId>thymeleaf-extras-data-attribute</artifactId>
 			<scope>compile</scope>
 		</dependency>
 

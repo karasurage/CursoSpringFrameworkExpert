@@ -38,14 +38,15 @@
 				<div class="form-group  col-sm-4">
 					<label>Tipo Pessoa</label> 
 					<div>
-						<div class="radio  radio-inline">
-							<input type="radio" id="id_FISICA" class="js-radio-tipo-pessoa" name="tipoPessoa"> 
-							<label class="control-label" for="id_FISICA">Física</label>
-						</div>
-						<div class="radio  radio-inline">
-							<input type="radio" id="id_JURIDICA" class="js-radio-tipo-pessoa" name="tipoPessoa"> 
-							<label class="control-label" for="id_JURIDICA">Jurídica</label>
-						</div>
+						<th:block th:each="tipoPessoa : ${tiposPessoa}">
+							<div class="radio  radio-inline">
+								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" name="tipoPessoa" 
+									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}" 
+									data-documento="CPF" data-mascara="000.000.000-00"> 
+								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}"></label>
+							</div>
+						</th:block>
+					
 					</div>
 				</div>
 				<!-- Fim Campo Tipo Pessoa -->
@@ -133,4 +134,7 @@
 </section>
 <!-- Fim da inserção de Fragmento do Conteúdo da Página (Layout Padrão) -->
 
+<th:block layout:fragment="javascript-extra">
+	<script th:src="@{/javascripts/cliente.mascara-cpf-cnpj.js}"></script>
+</th:block>
 </html>
