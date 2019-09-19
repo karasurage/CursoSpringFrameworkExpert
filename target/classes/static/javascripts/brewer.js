@@ -24,8 +24,38 @@ Brewer.MaskMoney = (function() {
 	
 }());
 
+Brewer.MaskPhoneNumber = (function() {
+	
+	function MaskPhoneNumber() {
+		this.inputPhoneNumber = $('.js-phone-number');
+	}
+	
+	MaskPhoneNumber.prototype.enable = function() {
+		var maskBehavior = function (val) {
+			return val.replace(/\D/g, '').lenght === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+		}
+		
+		var options = {
+			onKeyPress: function(val, e, field, options) {
+				field.mask(maskBehavior.apply({}, arguments), options);
+			}	
+		};
+		
+		this.inputPhoneNumber.mask(maskBehavior, options);
+	}
+	
+	return MaskPhoneNumber;
+	
+}());
+
+
 //Execucação das funções
 $(function() {
 	var maskMoney = new Brewer.MaskMoney();
 	maskMoney.enable();
+	
+	var maskPhoneNumber = new Brewer.MaskPhoneNumber();
+	maskPhoneNumber.enable();
+	
+	
 });
