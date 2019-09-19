@@ -3,6 +3,8 @@ package com.algaworks.brewer;
 import java.math.BigDecimal;
 import java.util.Locale;
 
+import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -11,10 +13,13 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.format.number.NumberStyleFormatter;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -152,5 +157,31 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 	public FotoStorage fotoStorage() {
 		return new FotoStorageLocal();
 	}
+	
+	/*
+	 * Classe criada para PaginacaoUtil para CervejasImpl.java e EstilosImpl.java
+	 */
+	@Component
+	public class PaginacaoUtil {
+
+		public void preparar(Criteria criteria, Pageable pageable) {
+			
+			int paginaAtual = pageable.getPageNumber();
+			int totalRegistrosPorPagina = pageable.getPageSize();
+			int primeiroRegistro = paginaAtual * totalRegistrosPorPagina;
+			
+			criteria.setFirstResult(primeiroRegistro);
+			criteria.setMaxResults(totalRegistrosPorPagina);
+			
+			Sort sort = pageable.getSort();
+			if (sort != null) {
+				Sort.Order order = sort.iterator().next();
+				String property = order.getProperty();
+				criteria.addOrder(order.isAscending() ? Order.asc(property) : Order.desc(property)); // Erro encontrado no criteria
+				// URL que funciona: http://localhost:8080/cervejas?sort=sku,asc
+			}
+		}
+	}
+	
 
 }
