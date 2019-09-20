@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:data="http://www.thymeleaf.org/extras/data"
 	  layout:decorate="layout/LayoutPadrao">
 
 <head>
@@ -41,8 +42,7 @@
 						<th:block th:each="tipoPessoa : ${tiposPessoa}">
 							<div class="radio  radio-inline">
 								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa" name="tipoPessoa" 
-									th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}" 
-									data-documento="CPF" data-mascara="000.000.000-00"> 
+									data:documento="${tipoPessoa.documento}" data:mascara="${tipoPessoa.mascara}">
 								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}"></label>
 							</div>
 						</th:block>
@@ -102,7 +102,7 @@
 				<!-- Início Campo CEP -->
 				<div class="form-group  col-sm-4">
 					<label for="cep">CEP</label>
-					<input type="text" class="form-control" id="cep"/>
+					<input type="text" class="form-control  js-cep" id="cep"/>
 				</div>
 				<!-- Fim Campo CEP -->
 				
@@ -111,6 +111,7 @@
 					<label for="estado">Estado</label>
 					<select id="estado" class="form-control">
 	                    <option value="">Selecione o estado</option>
+	                    <option th:each="estado : ${estados}" th:value="${estado.codigo}" th:text="${estado.nome}">São Paulo</option>
 	                </select>
 				</div>
 				<!-- Fim Campo Estado -->
@@ -136,5 +137,6 @@
 
 <th:block layout:fragment="javascript-extra">
 	<script th:src="@{/javascripts/cliente.mascara-cpf-cnpj.js}"></script>
+	<script th:src="@{/javascripts/cliente.combo-estado-cidade.js}"></script>
 </th:block>
 </html>

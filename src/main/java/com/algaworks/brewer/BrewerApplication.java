@@ -39,6 +39,7 @@ import com.algaworks.brewer.service.CadastroCervejaService;
 import com.algaworks.brewer.storage.FotoStorage;
 import com.algaworks.brewer.storage.local.FotoStorageLocal;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
+import com.github.mxab.thymeleaf.extras.dataattribute.dialect.DataAttributeDialect;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -98,7 +99,8 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 		engine.setTemplateResolver(templateResolver());
 		
 		engine.addDialect(new LayoutDialect()); // Cria um novo Layout Dialect
-		engine.addDialect(new BrewerDialect()); // Cria um novo Dialect Brewer
+		engine.addDialect(new BrewerDialect()); // Cria um novo Brewer Dialect 
+		engine.addDialect(new DataAttributeDialect()); // Cria um novo Data Attribute Dialect
 		return engine;
 	}
 	
