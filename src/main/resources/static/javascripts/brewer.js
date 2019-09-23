@@ -1,25 +1,17 @@
-// Criando o objeto brewer
 var Brewer = Brewer || {};
 
 Brewer.MaskMoney = (function() {
 	
-	/*
-	 *  Adicionando função construtora e Inicialização
-	 */
 	function MaskMoney() {
 		this.decimal = $('.js-decimal');
 		this.plain = $('.js-plain');
 	}
 	
-	/*
-	 * Protótipo das funções e Execucação dos protótipos
-	 */
 	MaskMoney.prototype.enable = function() {
 		this.decimal.maskMoney({ decimal: ',', thousands: '.' });
 		this.plain.maskMoney({ precision: 0, thousands: '.' });
 	}
 	
-	// Retorno da função construtora
 	return MaskMoney;
 	
 }());
@@ -32,13 +24,13 @@ Brewer.MaskPhoneNumber = (function() {
 	
 	MaskPhoneNumber.prototype.enable = function() {
 		var maskBehavior = function (val) {
-			return val.replace(/\D/g, '').lenght === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
-		}
+		  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+		};
 		
 		var options = {
-			onKeyPress: function(val, e, field, options) {
-				field.mask(maskBehavior.apply({}, arguments), options);
-			}	
+		  onKeyPress: function(val, e, field, options) {
+		      field.mask(maskBehavior.apply({}, arguments), options);
+		    }
 		};
 		
 		this.inputPhoneNumber.mask(maskBehavior, options);
@@ -62,8 +54,6 @@ Brewer.MaskCep = (function() {
 	
 }());
 
-
-//Execucação das funções
 $(function() {
 	var maskMoney = new Brewer.MaskMoney();
 	maskMoney.enable();
@@ -73,6 +63,5 @@ $(function() {
 	
 	var maskCep = new Brewer.MaskCep();
 	maskCep.enable();
-	
 	
 });

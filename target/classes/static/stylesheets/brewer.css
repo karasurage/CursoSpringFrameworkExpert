@@ -76,14 +76,19 @@
 
 /*
 ###################
-# P¡GINAS DO SISTEMA
+# P√ÅGINAS DO SISTEMA
 ###################
 */
+
+/* Colunas comuns */
+.table-col-acoes {
+	width: 80px;
+}
 
 /* Colunas - Pesquisa de Cervejas */
 .table-cervejas-col-foto {
 	min-width: 50px;
-	width: 50px;
+	width: 50px
 }
 
 .table-cervejas-col-sku {
@@ -109,5 +114,10 @@
 }
 
 .table-cervejas-col-acoes {
+	width: 80px;
+}
+
+/* Colunas - Pesquisa de Estilos */
+.table-estilos-col-codigo {
 	width: 80px;
 }
