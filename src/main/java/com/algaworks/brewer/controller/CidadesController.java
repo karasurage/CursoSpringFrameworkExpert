@@ -19,14 +19,14 @@ public class CidadesController {
 	@Autowired
 	private Cidades cidades;
 	
-	
 	@RequestMapping("/nova")
 	public String nova() {
 		return "cidade/CadastroCidade";
 	}
 	
 	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Cidade> pesquisarPorCodigoEstado(@RequestParam(name = "estado", defaultValue = "-1") Long codigoEstado) {
+	public @ResponseBody List<Cidade> pesquisarPorCodigoEstado(
+			@RequestParam(name = "estado", defaultValue = "-1") Long codigoEstado) {
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {	}

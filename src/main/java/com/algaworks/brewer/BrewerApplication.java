@@ -34,6 +34,8 @@ import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import com.algaworks.brewer.controller.CervejasController;
+import com.algaworks.brewer.controller.converter.CidadeConverter;
+import com.algaworks.brewer.controller.converter.EstadoConverter;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
 import com.algaworks.brewer.service.CadastroCervejaService;
 import com.algaworks.brewer.storage.FotoStorage;
@@ -132,6 +134,8 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 	public FormattingConversionService mvcConversionService() {
 		DefaultFormattingConversionService conversionService = new DefaultFormattingConversionService();
 		conversionService.addConverter(new EstiloConverter());
+		conversionService.addConverter(new CidadeConverter());
+		conversionService.addConverter(new EstadoConverter());
 		
 		// Formatando os padrões numéricos BigDecimal e Integer
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
