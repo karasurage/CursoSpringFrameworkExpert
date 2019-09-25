@@ -25,8 +25,8 @@ public class PageWrapper<T> {
 	public PageWrapper(Page<T> page, HttpServletRequest httpServletRequest) {
 		this.page = page;
 //		this.uriBuilder = ServletUriComponentsBuilder.fromRequest(httpServletRequest);
-		String httpUrl = httpServletRequest.getRequestURL().append(
-				httpServletRequest.getQueryString() != null ? "?" + httpServletRequest.getQueryString() : "")
+		String httpUrl = httpServletRequest.getRequestURL()
+				.append(httpServletRequest.getQueryString() != null ? "?" + httpServletRequest.getQueryString() : "")
 				.toString().replaceAll("\\+", "%20");
 		this.uriBuilder = UriComponentsBuilder.fromHttpUrl(httpUrl);
 	}
@@ -52,80 +52,79 @@ public class PageWrapper<T> {
 	public int getAtual() {
 		return page.getNumber();
 	}
-	
+
 	/*
 	 * Verifica a Primeira Página e retorna o valor da mesma
 	 */
 	public boolean isPrimeira() {
 		return page.isFirst();
 	}
-	
+
 	/*
 	 * Verifica a Última Página e retorna o valor da mesma
 	 */
 	public boolean isUltima() {
 		return page.isLast();
 	}
-	
+
 	/*
 	 * Verifica o Total de Páginas e retorna o valor da mesma
 	 */
 	public int getTotal() {
 		return page.getTotalPages();
 	}
-	
+
 	/*
 	 * Pega a página da URL
 	 */
 	public String urlParaPagina(int pagina) {
 		return uriBuilder.replaceQueryParam("page", pagina).build(true).encode().toUriString();
 	}
-	
+
 	/*
 	 * Cria o método para ordenar pelo atributo
 	 */
 	public String urlOrdenada(String propriedade) {
 		UriComponentsBuilder uriBuilderOrder = UriComponentsBuilder
 				.fromUriString(uriBuilder.build(true).encode().toUriString());
-		
+
 		String valorSort = String.format("%s,%s", propriedade, inverterDirecao(propriedade));
-		
+
 		return uriBuilderOrder.replaceQueryParam("sort", valorSort).build(true).encode().toUriString();
 	}
-	
+
 	/*
 	 * Inverte a direção do Filtro
 	 */
 	public String inverterDirecao(String propriedade) {
 		String direcao = "asc";
-		
+
 		Order order = page.getSort() != null ? page.getSort().getOrderFor(propriedade) : null;
 		if (order != null) {
 			direcao = Sort.Direction.ASC.equals(order.getDirection()) ? "desc" : "asc";
 		}
-		
+
 		return direcao;
 	}
-	
+
 	/*
 	 * Inverter de Descendente para Ascendente
 	 */
 	public boolean descendente(String propriedade) {
 		return inverterDirecao(propriedade).equals("asc");
 	}
-	
+
 	/*
 	 * Saber se existe a ordenação na tabela
 	 */
 	public boolean ordenada(String propriedade) {
-		Order order = page.getSort() != null ? page.getSort().getOrderFor(propriedade) : null; 
-		
+		Order order = page.getSort() != null ? page.getSort().getOrderFor(propriedade) : null;
+
 		if (order == null) {
 			return false;
 		}
-		
+
 		return page.getSort().getOrderFor(propriedade) != null ? true : false;
 	}
-	
 
 }

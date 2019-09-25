@@ -10,11 +10,13 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.group.GroupSequenceProvider;
@@ -55,6 +57,17 @@ public class Cliente implements Serializable {
 
 	@Embedded
 	private Endereco endereco;
+	
+	/*
+	 * Antes de Persistir no Banco de Dados e 
+	 * de fazer o Update, ele remove os pontos, traços e barras
+	 * do CPF e CNPJ
+	 */
+	@PrePersist
+	@PreUpdate
+	private void prePersistPreUpdate() {
+		this.cpfOuCnpj = TipoPessoa.removerFormatacao(this.cpfOuCnpj);
+	}
 
 	public Long getCodigo() {
 		return codigo;
@@ -110,6 +123,10 @@ public class Cliente implements Serializable {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+	
+	public String getCpfOuCnpjSemFormatacao() {
+		return TipoPessoa.removerFormatacao(this.cpfOuCnpj);
 	}
 
 	@Override

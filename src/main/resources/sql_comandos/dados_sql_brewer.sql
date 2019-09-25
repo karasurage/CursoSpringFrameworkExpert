@@ -6,12 +6,14 @@ select * from cerveja;
 select * from estilo;
 select * from cidade;
 select * from estado;
+select * from cliente;
 
 # Delete das Tabelas
 delete from cerveja where codigo >= 1;
 delete from estilo where codigo >= 1;
 delete from cidade where codigo >= 1;
 delete from estado where codigo >= 1;
+delete from cliente where codigo >= 1;
 
 # V01__criar_tabelas_estilo_e_cerveja.sql
 CREATE TABLE estilo (
@@ -104,3 +106,7 @@ CREATE TABLE cliente (
     codigo_cidade BIGINT(20),
     FOREIGN KEY (codigo_cidade) REFERENCES cidade(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+# V06__alterar_cpf_cnpj_para_not_null.sql
+ALTER TABLE cliente
+	MODIFY cpf_cnpj VARCHAR(30) NOT NULL;

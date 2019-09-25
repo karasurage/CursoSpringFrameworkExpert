@@ -55,6 +55,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @EnableWebMvc
 // Anotação para suporte do Data para Web (Paginação e mais)
 @EnableSpringDataWebSupport
+@Component
 public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAware {
 
 	public static void main(String[] args) {
@@ -188,6 +189,5 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 			}
 		}
 	}
-	
 
 }

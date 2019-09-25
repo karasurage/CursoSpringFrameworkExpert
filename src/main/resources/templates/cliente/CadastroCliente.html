@@ -14,11 +14,21 @@
 
 	<div class="page-header">
 		<div class="container-fluid">
-			<h1>
-				<strong>Cadastro de Cliente</strong>
-			</h1>
+			<div class="row">
+				<div class="col-sm-10">
+					<h1><strong>Cadastro de Clientes</strong></h1>
+				</div>
+				
+				<div class="col-sm-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/clientes?page=0&sort=nome,asc}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisa Cliente</span>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	</div>	
 
 	<div class="container-fluid">
 		<form method="POST" th:object="${cliente}" th:action="@{/clientes/novo}">

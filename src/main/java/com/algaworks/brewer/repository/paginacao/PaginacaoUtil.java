@@ -1,4 +1,4 @@
-package com.algaworks.brewer.repository.paginacao;
+//package com.algaworks.brewer.repository.paginacao;
 
 // Esse método só funciona dentro da classe principal
 

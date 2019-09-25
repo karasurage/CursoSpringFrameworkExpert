@@ -40,7 +40,7 @@ public class OrderElementTagProcessor extends AbstractElementTagProcessor {
 		IModel model = modelFactory.createModel();
 		model.add(modelFactory.createStandaloneElementTag("th:block" 
 				, "th:replace"
-				, String.format("fragments/Ordenacao :: order (%s, %s, %s)", page.getValue(), field.getValue(), text.getValue())));
+				, String.format("fragments/Ordenacao :: order (%s, %s, '%s')", page.getValue(), field.getValue(), text.getValue())));
 		
 		/*
 		 * Inseri as informações para a tag brewer:message que serão processadas pelo thymeleaf
