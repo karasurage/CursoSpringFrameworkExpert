@@ -189,5 +189,5 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 			}
 		}
 	}
-
+	
 }

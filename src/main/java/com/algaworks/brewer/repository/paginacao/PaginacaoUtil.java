@@ -1,7 +1,13 @@
 //package com.algaworks.brewer.repository.paginacao;
-
-// Esse método só funciona dentro da classe principal
-
+//
+//
+//import org.hibernate.Criteria;
+//import org.hibernate.criterion.Order;
+//import org.springframework.data.domain.Pageable;
+//import org.springframework.data.domain.Sort;
+//// Esse método só funciona dentro da classe principal
+//import org.springframework.stereotype.Component;
+//
 //@Component
 //public class PaginacaoUtil {
 //

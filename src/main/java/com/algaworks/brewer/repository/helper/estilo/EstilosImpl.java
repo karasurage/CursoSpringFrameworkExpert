@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import com.algaworks.brewer.model.Estilo;
 import com.algaworks.brewer.repository.filter.EstiloFilter;
+//import com.algaworks.brewer.repository.paginacao.PaginacaoUtil;
 
 public class EstilosImpl implements EstilosQueries {
 	
@@ -26,6 +27,9 @@ public class EstilosImpl implements EstilosQueries {
 	@Autowired
 	private com.algaworks.brewer.BrewerApplication.PaginacaoUtil paginacaoUtil;
 
+//	@Autowired
+//	private PaginacaoUtil paginacaoUtil;
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
@@ -52,5 +56,5 @@ public class EstilosImpl implements EstilosQueries {
 			}
 		}
 	}
-
+	
 }

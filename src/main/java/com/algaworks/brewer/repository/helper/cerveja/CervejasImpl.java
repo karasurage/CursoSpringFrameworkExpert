@@ -26,6 +26,10 @@ public class CervejasImpl implements CervejasQueries {
 	@Autowired
 	private com.algaworks.brewer.BrewerApplication.PaginacaoUtil paginacaoUtil;
 	
+//	@Autowired
+//	private PaginacaoUtil paginacaoUtil;
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional(readOnly = true)
@@ -81,5 +85,5 @@ public class CervejasImpl implements CervejasQueries {
 	private boolean isEstiloPresente(CervejaFilter filtro) {
 		return filtro.getEstilo() != null && filtro.getEstilo().getCodigo() != null;
 	}
-
+	
 }
