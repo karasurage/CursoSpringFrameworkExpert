@@ -13,10 +13,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.algaworks.brewer.validation.AtributoConfirmacao;
+
+@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "confirmacaoSenha", message = "Confirmação da senha não confere")
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
@@ -36,23 +40,17 @@ public class Usuario implements Serializable {
 
 	private String senha;
 
+	@Transient
+	private String confirmacaoSenha;
+
 	private Boolean ativo;
 
 	@NotNull(message = "Selecione pelo menos um grupo")
 	@ManyToMany
-	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario") 
-					, inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
+	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario"),
+				inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
 	private List<Grupo> grupos;
 
-	public List<Grupo> getGrupos() {
-		return grupos;
-	}
-
-	public void setGrupos(List<Grupo> grupos) {
-		this.grupos = grupos;
-	}
-
-	@NotNull(message = "Data de Nascimento é obrigatório")
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
@@ -102,6 +100,22 @@ public class Usuario implements Serializable {
 
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public List<Grupo> getGrupos() {
+		return grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
+	public String getConfirmacaoSenha() {
+		return confirmacaoSenha;
+	}
+
+	public void setConfirmacaoSenha(String confirmacaoSenha) {
+		this.confirmacaoSenha = confirmacaoSenha;
 	}
 
 	@Override

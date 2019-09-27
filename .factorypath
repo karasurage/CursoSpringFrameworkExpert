@@ -81,4 +81,7 @@
     <factorypathentry kind="VARJAR" id="M2_REPO/com/github/mxab/thymeleaf/extras/thymeleaf-extras-data-attribute/2.0.1/thymeleaf-extras-data-attribute-2.0.1.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/com/google/guava/guava/19.0/guava-19.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/springframework/spring-context-support/5.1.9.RELEASE/spring-context-support-5.1.9.RELEASE.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/commons-beanutils/commons-beanutils/1.9.2/commons-beanutils-1.9.2.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar" enabled="true" runInBatchMode="false"/>
 </factorypath>

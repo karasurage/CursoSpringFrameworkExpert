@@ -3,17 +3,27 @@ use brewer;
 
 # Consulta das Tabelas
 select * from cerveja;
-select * from estilo;
 select * from cidade;
-select * from estado;
 select * from cliente;
+select * from estado;
+select * from estilo;
+select * from grupo;
+select * from grupo_permissao;
+select * from permissao;
+select * from usuario;
+select * from usuario_grupo;
 
 # Delete das Tabelas
 delete from cerveja where codigo >= 1;
-delete from estilo where codigo >= 1;
 delete from cidade where codigo >= 1;
-delete from estado where codigo >= 1;
 delete from cliente where codigo >= 1;
+delete from estado where codigo >= 1;
+delete from estilo where codigo >= 1;
+delete from grupo where codigo >= 1;
+delete from grupo_permissao where codigo >= 1;
+delete from permissao where codigo >= 1;
+delete from usuario where codigo >= 1;
+delete from usuario_grupo where codigo >= 1;
 
 # V01__criar_tabelas_estilo_e_cerveja.sql
 CREATE TABLE estilo (
@@ -110,3 +120,39 @@ CREATE TABLE cliente (
 # V06__alterar_cpf_cnpj_para_not_null.sql
 ALTER TABLE cliente
 	MODIFY cpf_cnpj VARCHAR(30) NOT NULL;
+
+# V07__criar_tabela_usuario_grupo_permissao.sql    
+CREATE TABLE usuario (
+    codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(50) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(120) NOT NULL,
+    ativo BOOLEAN DEFAULT true,
+    data_nascimento DATE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE grupo (
+    codigo BIGINT(20) PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE permissao (
+    codigo BIGINT(20) PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE usuario_grupo (
+    codigo_usuario BIGINT(20) NOT NULL,
+    codigo_grupo BIGINT(20) NOT NULL,
+    PRIMARY KEY (codigo_usuario, codigo_grupo),
+    FOREIGN KEY (codigo_usuario) REFERENCES usuario(codigo),
+    FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE grupo_permissao (
+    codigo_grupo BIGINT(20) NOT NULL,
+    codigo_permissao BIGINT(20) NOT NULL,
+    PRIMARY KEY (codigo_grupo, codigo_permissao),
+    FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo),
+    FOREIGN KEY (codigo_permissao) REFERENCES permissao(codigo)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
