@@ -2,12 +2,16 @@ package com.algaworks.brewer;
 
 import java.math.BigDecimal;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.BeansException;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
@@ -42,6 +46,7 @@ import com.algaworks.brewer.storage.FotoStorage;
 import com.algaworks.brewer.storage.local.FotoStorageLocal;
 import com.algaworks.brewer.thymeleaf.BrewerDialect;
 import com.github.mxab.thymeleaf.extras.dataattribute.dialect.DataAttributeDialect;
+import com.google.common.cache.CacheBuilder;
 
 import nz.net.ultraq.thymeleaf.LayoutDialect;
 
@@ -55,7 +60,8 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @EnableWebMvc
 // Anotação para suporte do Data para Web (Paginação e mais)
 @EnableSpringDataWebSupport
-@Component
+//  Habilita e Desabilita o Cache
+@EnableCaching
 public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAware {
 
 	public static void main(String[] args) {
@@ -182,12 +188,27 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 			
 			Sort sort = pageable.getSort();
 			if (sort != null) {
+				
 				Sort.Order order = sort.iterator().next();
 				String property = order.getProperty();
 				criteria.addOrder(order.isAscending() ? Order.asc(property) : Order.desc(property)); // Erro encontrado no criteria
-				// URL que funciona: http://localhost:8080/cervejas?sort=sku,asc
+				// URL que funciona: http://localhost:8080/cervejas?sort=sku,asc ou qualquer outra página de pesquisa
 			}
 		}
+	}
+	
+	/*
+	 * Implementação do Método para fazer o Cache da Aplicação
+	 */
+	@Bean
+	public CacheManager cacheManager() {
+		CacheBuilder<Object, Object> cacheBuilder = CacheBuilder.newBuilder()
+				.maximumSize(3)
+				.expireAfterAccess(20, TimeUnit.SECONDS);
+		
+		GuavaCacheManager cacheManager = new GuavaCacheManager();
+		cacheManager.setCacheBuilder(cacheBuilder);
+		return cacheManager;
 	}
 	
 }
