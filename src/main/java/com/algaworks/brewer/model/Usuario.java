@@ -20,7 +20,8 @@ import javax.validation.constraints.NotNull;
 
 import com.algaworks.brewer.validation.AtributoConfirmacao;
 
-@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "confirmacaoSenha", message = "Confirmação da senha não confere")
+@AtributoConfirmacao(atributo = "senha", atributoConfirmacao = "confirmacaoSenha"
+				, message = "Confirmação da senha não confere")
 @Entity
 @Table(name = "usuario")
 public class Usuario implements Serializable {
@@ -39,16 +40,16 @@ public class Usuario implements Serializable {
 	private String email;
 
 	private String senha;
-
+	
 	@Transient
 	private String confirmacaoSenha;
 
 	private Boolean ativo;
 
-	@NotNull(message = "Selecione pelo menos um grupo")
+//	@NotNull(message = "Selecione pelo menos um grupo")
 	@ManyToMany
-	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario"),
-				inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))
+	@JoinTable(name = "usuario_grupo", joinColumns = @JoinColumn(name = "codigo_usuario")
+				, inverseJoinColumns = @JoinColumn(name = "codigo_grupo"))	
 	private List<Grupo> grupos;
 
 	@Column(name = "data_nascimento")
