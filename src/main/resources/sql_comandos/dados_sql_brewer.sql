@@ -156,3 +156,11 @@ CREATE TABLE grupo_permissao (
     FOREIGN KEY (codigo_grupo) REFERENCES grupo(codigo),
     FOREIGN KEY (codigo_permissao) REFERENCES permissao(codigo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+# V08__alterando_ativo_do_usuario_para_not_null.sql
+ALTER TABLE usuario
+	MODIFY ativo BOOLEAN DEFAULT true NOT NULL;
+
+# V09__inserir_grupos.sql
+INSERT INTO grupo (codigo, nome) VALUES (1, 'Administrador');
+INSERT INTO grupo (codigo, nome) VALUES (2, 'Vendedor');
