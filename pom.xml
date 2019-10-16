@@ -249,6 +249,13 @@
 			<version>${commons-beanutils.version}</version>
 			<scope>compile</scope>
 		</dependency>
+		
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<scope>compile</scope>
+		</dependency>
 
 	</dependencies>
 

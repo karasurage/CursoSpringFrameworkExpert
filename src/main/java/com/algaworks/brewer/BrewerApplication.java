@@ -27,6 +27,8 @@ import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.format.number.NumberStyleFormatter;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -45,6 +47,7 @@ import com.algaworks.brewer.controller.CervejasController;
 import com.algaworks.brewer.controller.converter.CidadeConverter;
 import com.algaworks.brewer.controller.converter.EstadoConverter;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
+import com.algaworks.brewer.controller.converter.GrupoConverter;
 import com.algaworks.brewer.service.CadastroCervejaService;
 import com.algaworks.brewer.storage.FotoStorage;
 import com.algaworks.brewer.storage.local.FotoStorageLocal;
@@ -147,6 +150,7 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 		conversionService.addConverter(new EstiloConverter());
 		conversionService.addConverter(new CidadeConverter());
 		conversionService.addConverter(new EstadoConverter());
+		conversionService.addConverter(new GrupoConverter());
 		
 		// Formatando os padrões numéricos BigDecimal e Integer
 		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
@@ -230,6 +234,16 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 		bundle.setBasename("classpath:/messages");
 		bundle.setDefaultEncoding("UTF-8"); // https://www.utf8-chartable.de/
 		return bundle;
+	}
+	
+	/*
+	 * SecurityConfig.java
+	 */	
+	
+	//Criptografar a Senha para salvar no servidor
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
 	}
 	
 }
