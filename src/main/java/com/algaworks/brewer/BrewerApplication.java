@@ -256,7 +256,11 @@ public class BrewerApplication extends WebSecurityConfigurerAdapter implements W
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.anyRequest().authenticated();
+				.anyRequest().authenticated()
+				.and()
+			.formLogin()
+				.and()
+			.csrf().disable();
 	}
 	
 	//Criptografar a Senha para salvar no servidor
