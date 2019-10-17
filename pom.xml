@@ -40,25 +40,28 @@
 		<!-- thumbnailator - Gerar Thumbnail -->
 		<!-- https://github.com/coobird/thumbnailator -->
 		<thumbnailator.version>0.4.8</thumbnailator.version>
-		
+
 		<!-- Cache - Guava -->
 		<guava.version>19.0</guava.version>
-		
+
 		<!-- Apache Bean Utils -->
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
+
+		<!-- Spring Security -->
+		<spring-security.version>4.1.1.RELEASE</spring-security.version>
 	</properties>
 
-<!-- 	<dependencyManagement> -->
-<!-- 		<dependencies> -->
-<!-- 			<dependency> -->
-<!-- 				<groupId>org.springframework</groupId> -->
-<!-- 				<artifactId>spring-framework-bom</artifactId> -->
-<!-- 				<version>${spring-framework.version}</version> -->
-<!-- 				<type>pom</type> -->
-<!-- 				<scope>import</scope> -->
-<!-- 			</dependency> -->
-<!-- 		</dependencies> -->
-<!-- 	</dependencyManagement> -->
+	<!-- <dependencyManagement> -->
+	<!-- <dependencies> -->
+	<!-- <dependency> -->
+	<!-- <groupId>org.springframework</groupId> -->
+	<!-- <artifactId>spring-framework-bom</artifactId> -->
+	<!-- <version>${spring-framework.version}</version> -->
+	<!-- <type>pom</type> -->
+	<!-- <scope>import</scope> -->
+	<!-- </dependency> -->
+	<!-- </dependencies> -->
+	<!-- </dependencyManagement> -->
 
 	<!-- Gerenciamento de dependências do Spring -->
 	<dependencies>
@@ -226,7 +229,7 @@
 			<artifactId>thymeleaf-extras-data-attribute</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Cache - Guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -234,14 +237,14 @@
 			<version>${guava.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Spring Context Support -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Apache Bean Utils -->
 		<dependency>
 			<groupId>commons-beanutils</groupId>
@@ -249,11 +252,18 @@
 			<version>${commons-beanutils.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		
+
 		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-web</artifactId>
+			<version>${spring-security.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring-security.version}</version>
 			<scope>compile</scope>
 		</dependency>
 

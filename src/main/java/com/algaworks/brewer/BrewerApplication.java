@@ -27,6 +27,10 @@ import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 import org.springframework.format.number.NumberStyleFormatter;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -67,9 +71,11 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 @EnableWebMvc
 // Anotação para suporte do Data para Web (Paginação e mais)
 @EnableSpringDataWebSupport
-//  Habilita e Desabilita o Cache
+// Habilita e Desabilita o Cache
 @EnableCaching
-public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAware {
+// Habilita a Segurança Web
+@EnableWebSecurity
+public class BrewerApplication extends WebSecurityConfigurerAdapter implements WebMvcConfigurer, ApplicationContextAware {
 
 	public static void main(String[] args) {
 		SpringApplication.run(BrewerApplication.class, args);
@@ -239,6 +245,19 @@ public class BrewerApplication implements WebMvcConfigurer, ApplicationContextAw
 	/*
 	 * SecurityConfig.java
 	 */	
+	
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication()
+		.withUser("admin").password("admin").roles("CADASTRO_CLIENTES");
+	}
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http
+			.authorizeRequests()
+				.anyRequest().authenticated();
+	}
 	
 	//Criptografar a Senha para salvar no servidor
 	@Bean
