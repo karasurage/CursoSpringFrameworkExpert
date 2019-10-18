@@ -42,8 +42,8 @@
 		<thumbnailator.version>0.4.8</thumbnailator.version>
 
 		<!-- Cache - Guava -->
-		<guava.version>19.0</guava.version>
-
+		<guava.version>23.0</guava.version>
+		<!-- 19.0 Guava -->
 		<!-- Apache Bean Utils -->
 		<commons-beanutils.version>1.9.2</commons-beanutils.version>
 
@@ -239,11 +239,18 @@
 		</dependency>
 
 		<!-- Spring Context Support -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework</groupId> -->
+		<!-- <artifactId>spring-context-support</artifactId> -->
+		<!-- <scope>compile</scope> -->
+		<!-- </dependency> -->
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
-			<scope>compile</scope>
+			<version>4.3.12.RELEASE</version>
 		</dependency>
+
 
 		<!-- Apache Bean Utils -->
 		<dependency>
