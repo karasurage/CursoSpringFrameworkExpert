@@ -8,6 +8,7 @@ import java.util.concurrent.TimeUnit;
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -29,8 +30,10 @@ import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
@@ -52,6 +55,7 @@ import com.algaworks.brewer.controller.converter.CidadeConverter;
 import com.algaworks.brewer.controller.converter.EstadoConverter;
 import com.algaworks.brewer.controller.converter.EstiloConverter;
 import com.algaworks.brewer.controller.converter.GrupoConverter;
+import com.algaworks.brewer.security.AppUserDetailsService;
 import com.algaworks.brewer.service.CadastroCervejaService;
 import com.algaworks.brewer.storage.FotoStorage;
 import com.algaworks.brewer.storage.local.FotoStorageLocal;
@@ -66,7 +70,7 @@ import nz.net.ultraq.thymeleaf.LayoutDialect;
 //Anotação de Configuração
 @Configuration
 //Anotação de Configuração do Controller
-@ComponentScan(basePackageClasses = { CervejasController.class, CadastroCervejaService.class })
+@ComponentScan(basePackageClasses = { CervejasController.class, CadastroCervejaService.class, AppUserDetailsService.class })
 //Anotação de Configuração para Aplicações Web MVC
 @EnableWebMvc
 // Anotação para suporte do Data para Web (Paginação e mais)
@@ -246,10 +250,19 @@ public class BrewerApplication extends WebSecurityConfigurerAdapter implements W
 	 * SecurityConfig.java
 	 */	
 	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-		.withUser("admin").password("admin").roles("CADASTRO_CLIENTES");
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+	}
+	
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring()
+			.antMatchers("/layout/**")
+			.antMatchers("/images/**");
 	}
 	
 	@Override
@@ -259,6 +272,8 @@ public class BrewerApplication extends WebSecurityConfigurerAdapter implements W
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
+				.loginPage("/login")
+				.permitAll()
 				.and()
 			.csrf().disable();
 	}
