@@ -269,7 +269,6 @@ public class BrewerApplication extends WebSecurityConfigurerAdapter implements W
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.anyRequest().authenticated()
 				.antMatchers("/cidades/nova").hasRole("CADASTRAR_CIDADE") // Definir primeiro as restrições e posteriormente fazer a autenticação das páginas
 				.antMatchers("/usuarios/**").hasRole("CADASTRAR_USUARIO")
 //				.anyRequest().authenticated()
